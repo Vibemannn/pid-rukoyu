@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ПІД РУКОЮ — оренда речей у розумних шафках</title>
+<style>
+:root{--bg:#071433;--bg2:#0c1f4d;--card:#0f2557;--line:#1f3a7a;--tx:#fff;--mut:#a9b8dc;--g:#2bff88;--gd:#0b2a1b;--y:#ffd166;--b:#5ab0ff;--o:#ff9f5a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:radial-gradient(900px 500px at 85% -10%,#12327a55,transparent),var(--bg);color:var(--tx);font-family:"Manrope","Segoe UI",system-ui,sans-serif;line-height:1.55;min-height:100vh}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--g);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:#071433d9;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.logo{font-weight:800;letter-spacing:.04em;display:flex;align-items:center;gap:10px;font-size:1.05rem}
+.logo i{width:30px;height:30px;border-radius:9px;background:var(--g);display:grid;place-items:center}
+.logo svg{width:18px;height:18px}
+.tabs{display:flex;gap:6px}
+.tab{background:none;border:1px solid transparent;color:var(--mut);padding:8px 14px;border-radius:999px;font-weight:600;transition:.2s}
+.tab:hover{color:var(--tx)}
+.tab.on{background:var(--g);color:#032012}
+.view{display:none}.view.on{display:block;animation:in .45s ease}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.hero{padding:72px 0 56px;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+h1{font-size:clamp(2.6rem,8vw,5.2rem);line-height:1;margin:0 0 18px;font-weight:800;letter-spacing:-.01em}
+.slogan{font-size:clamp(1.2rem,3vw,1.6rem);color:var(--g);font-weight:700;margin:0 0 12px}
+.sub{color:var(--mut);font-size:1.1rem;max-width:34em;margin:0 0 28px}
+.btn{border:0;border-radius:14px;padding:13px 22px;font-weight:700;transition:transform .15s,box-shadow .2s,background .2s}
+.btn:active{transform:scale(.97)}
+.pri{background:var(--g);color:#032012;box-shadow:0 8px 30px #2bff8838}
+.pri:hover{box-shadow:0 10px 38px #2bff8866}
+.ghost{background:transparent;color:var(--tx);border:1px solid var(--line)}
+.ghost:hover{border-color:var(--g)}
+.locker{background:linear-gradient(160deg,var(--bg2),var(--card));border:1px solid var(--line);border-radius:24px;padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cell{aspect-ratio:1;border-radius:12px;background:#0a1b45;border:1px solid var(--line);display:grid;place-items:center;position:relative}
+.cell::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--mut);position:absolute;top:8px;right:8px;opacity:.5}
+.cell.lit{border-color:var(--g);animation:pulse 2.4s infinite}
+.cell.lit::after{background:var(--g);opacity:1}
+.cell svg{width:46%;color:var(--mut)}.cell.lit svg{color:var(--g)}
+@keyframes pulse{50%{box-shadow:0 0 22px #2bff8855}}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 56px}
+.step{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:16px;font-size:.92rem;color:var(--mut)}
+.step b{display:block;color:var(--tx);margin-bottom:4px}
+h2{font-size:clamp(1.6rem,4vw,2.2rem);margin:0 0 6px}
+.lead{color:var(--mut);margin:0 0 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:18px;padding-bottom:72px}
+.card{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,border-color .25s}
+.card:hover{transform:translateY(-4px);border-color:#3a63c4}
+.img{height:150px;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,#1a3f94,#0a1b45)}
+.img svg{width:84px;height:84px;color:var(--g);transition:transform .3s}
+.card:hover .img svg{transform:scale(1.08) rotate(-4deg)}
+.body{padding:18px;display:flex;flex-direction:column;gap:12px;flex:1}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.name{font-weight:700;font-size:1.15rem}
+.price{font-weight:800;color:var(--g);font-size:1.15rem;white-space:nowrap}
+.badge{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:999px;font-size:.82rem;font-weight:700;width:fit-content;border:1px solid}
+.badge::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.s-available{color:var(--g);background:#2bff8814;border-color:#2bff8855}
+.s-booked{color:var(--y);background:#ffd16614;border-color:#ffd16655}
+.s-issued{color:var(--b);background:#5ab0ff14;border-color:#5ab0ff55}
+.s-review{color:var(--o);background:#ff9f5a14;border-color:#ff9f5a55}
+.card .btn{margin-top:auto;width:100%}
+.adm{background:#fff;color:#071433}
+.hint{font-size:.8rem;color:var(--mut);margin:0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:24px}
+.stat{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:18px}
+.stat span{color:var(--mut);font-size:.88rem}
+.stat strong{display:block;font-size:2.2rem;line-height:1.2}
+.stat.big{border-color:var(--g)}
+.bar{display:flex;height:16px;border-radius:99px;overflow:hidden;background:#0a1b45;margin:0 0 8px}
+.bar div{transition:width .6s ease}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.85rem;color:var(--mut);margin-bottom:28px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.panel{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:20px}
+.panel h3{margin:0 0 12px}
+.trow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line);flex-wrap:wrap}
+.trow:first-of-type{border-top:0}
+.log{list-style:none;margin:0;padding:0;max-height:220px;overflow:auto;font-size:.9rem;color:var(--mut)}
+.log li{padding:6px 0;border-top:1px solid var(--line)}.log li:first-child{border-top:0;color:var(--tx)}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:60px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);background:var(--g);color:#032012;font-weight:700;padding:12px 20px;border-radius:14px;opacity:0;pointer-events:none;transition:.3s;z-index:9;max-width:90vw;text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-size:.85rem;text-align:center}
+@media(max-width:820px){.hero{grid-template-columns:1fr;padding-top:40px}.locker{max-width:340px}.steps{grid-template-columns:1fr 1fr}.logo span{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="i-pb" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="6" width="28" height="52" rx="7"/><path d="M34 18l-8 13h8l-4 13"/><path d="M27 6V3h10v3"/></symbol>
+<symbol id="i-um" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 32C8 16 20 8 32 8s24 8 26 24c-4-4-9-4-13 0-4-4-9-4-13 0-4-4-9-4-13 0-4-4-9-4-13 0z"/><path d="M32 32v18a6 6 0 0 1-12 0"/><path d="M32 4v4"/></symbol>
+<symbol id="i-ca" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="5" width="40" height="54" rx="7"/><rect x="18" y="11" width="28" height="12" rx="3"/><path d="M22 32h2M32 32h2M42 32h2M22 42h2M32 42h2M42 42h2M22 51h2M32 51h2M42 51h2"/></symbol>
+<symbol id="i-cb" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="24" width="12" height="16" rx="3"/><path d="M18 29h6M18 35h6"/><path d="M24 32c10 0 10-14 20-14M24 32c10 0 10 14 20 14" opacity="0"/><path d="M24 32h10c6 0 6-12 12-12"/><rect x="46" y="12" width="12" height="16" rx="3"/><path d="M50 12V7M54 12V7"/></symbol>
+</defs>
+</svg>
+
+<header><div class="wrap nav">
+  <div class="logo"><i><svg viewBox="0 0 24 24" fill="none" stroke="#032012" stroke-width="3" stroke-linecap="round"><path d="M5 12l5 5 9-10"/></svg></i><span>ПІД РУКОЮ</span></div>
+  <nav class="tabs" aria-label="Розділи">
+    <button class="tab on" data-v="home">Головна</button>
+    <button class="tab" data-v="admin">Адмін-панель</button>
+  </nav>
+</div></header>
+
+<main>
+<section class="view on" id="v-home"><div class="wrap">
+  <div class="hero">
+    <div>
+      <h1>ПІД РУКОЮ</h1>
+      <p class="slogan">Твоя потреба. Наша операція.</p>
+      <p class="sub">Не купуй те, що потрібно лише на кілька годин. Просто орендуй.</p>
+      <button class="btn pri" id="go">Знайти потрібну річ</button>
+    </div>
+    <div class="locker" aria-hidden="true" id="locker"></div>
+  </div>
+  <div class="steps">
+    <div class="step"><b>Обери річ</b>Знайди її в каталозі розумної шафки.</div>
+    <div class="step"><b>Забронюй</b>Річ чекає саме на тебе.</div>
+    <div class="step"><b>Отримай</b>Шафка відкривається на кілька секунд.</div>
+    <div class="step"><b>Поверни</b>Після перевірки річ знову доступна.</div>
+  </div>
+  <h2 id="cat">Каталог речей</h2>
+  <p class="lead">Демо-шафка в університеті. Натискай кнопки та проходь увесь шлях оренди.</p>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section class="view" id="v-admin"><div class="wrap" style="padding-top:36px">
+  <h2>Адмін-панель</h2>
+  <p class="lead">Статистика розумних шафок оновлюється одразу після будь-якої дії в каталозі.</p>
+  <div class="stats" id="stats"></div>
+  <div class="bar" id="bar"></div>
+  <div class="legend" id="legend"></div>
+  <div class="panel"><h3>Перевірка повернених речей</h3><div id="queue"></div></div>
+  <div class="panel"><h3>Журнал операцій</h3><ul class="log" id="log"></ul></div>
+  <div class="tools"><button class="btn ghost" id="reset">Скинути демонстрацію</button></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">Демонстраційний прототип для університетського захисту. Без реальних платежів, персональних даних і зовнішніх серверів.</div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const BASE={available:80,booked:14,issued:17,review:5};
+const BASE_OPS=80;
+const ST={available:"Доступний",booked:"Заброньований",issued:"Виданий",review:"На перевірці"};
+const COL={available:"#2bff88",booked:"#ffd166",issued:"#5ab0ff",review:"#ff9f5a"};
+const mk=()=>[
+ {id:1,n:"Павербанк",p:15,i:"i-pb",s:"available"},
+ {id:2,n:"Парасоля",p:10,i:"i-um",s:"available"},
+ {id:3,n:"Калькулятор",p:12,i:"i-ca",s:"available"},
+ {id:4,n:"Зарядний кабель",p:8,i:"i-cb",s:"available"}];
+let items=mk(),ops=BASE_OPS,log=[];
+const ic=(id)=>`<svg viewBox="0 0 64 64"><use href="#${id}"/></svg>`;
+const now=()=>new Date().toLocaleTimeString("uk-UA",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),2200)}
+const ACT={
+ available:["Забронювати","booked","Товар заброньовано","pri"],
+ booked:["Отримати предмет","issued","Предмет видано","pri"],
+ issued:["Повернути предмет","review","Предмет повернуто на перевірку","pri"],
+ review:["Підтвердити справність","available","Справність підтверджено, предмет доступний","adm"]};
+function act(id){
+ const it=items.find(x=>x.id===id),a=ACT[it.s];
+ it.s=a[1];ops++;log.unshift(`${now()} — ${it.n}: ${a[2].toLowerCase()}`);
+ toast(`${it.n}: ${a[2]}`);render();
+}
+function render(){
+ $("#grid").innerHTML=items.map(it=>{const a=ACT[it.s];
+  const hint=it.s==="review"?'<p class="hint">Дія доступна лише адміністратору</p>':"";
+  return `<article class="card"><div class="img">${ic(it.i)}</div><div class="body">
+  <div class="row"><span class="name">${it.n}</span><span class="price">${it.p} грн</span></div>
+  <span class="badge s-${it.s}">${ST[it.s]}</span>${hint}
+  <button class="btn ${a[3]}" data-id="${it.id}">${a[0]}</button></div></article>`}).join("");
+ const c={...BASE};items.forEach(i=>c[i.s]++);
+ const S=[["Загальна кількість предметів",120,"big"],["Доступні предмети",c.available],["Заброньовані предмети",c.booked],["Видані предмети",c.issued],["Предмети на перевірці",c.review],["Кількість операцій за день",ops]];
+ $("#stats").innerHTML=S.map(x=>`<div class="stat ${x[2]||""}"><span>${x[0]}</span><strong>${x[1]}</strong></div>`).join("");
+ $("#bar").innerHTML=Object.keys(ST).map(k=>`<div style="width:${c[k]/120*100}%;background:${COL[k]}"></div>`).join("");
+ $("#legend").innerHTML=Object.keys(ST).map(k=>`<span><i style="background:${COL[k]}"></i>${ST[k]}: ${c[k]}</span>`).join("");
+ const q=items.filter(i=>i.s==="review");
+ $("#queue").innerHTML=q.length?q.map(i=>`<div class="trow"><span>${i.n} — очікує перевірки</span><button class="btn adm" data-id="${i.id}">Підтвердити справність</button></div>`).join(""):'<p class="hint">Черга порожня. Поверни річ у каталозі, і вона з’явиться тут.</p>';
+ $("#log").innerHTML=log.length?log.slice(0,30).map(l=>`<li>${l}</li>`).join(""):"<li>Поки що немає нових операцій.</li>";
+ document.querySelectorAll(".cell").forEach((e,k)=>{if(items[k])e.classList.toggle("lit",items[k].s==="available")});
+}
+document.addEventListener("click",e=>{const b=e.target.closest("button[data-id]");if(b)act(+b.dataset.id)});
+$("#reset").onclick=()=>{items=mk();ops=BASE_OPS;log=[];render();toast("Демонстрацію скинуто до початкового стану")};
+$("#locker").innerHTML=["i-pb","i-um","i-ca","i-cb","","","","",""].map(x=>`<div class="cell">${x?ic(x):""}</div>`).join("");
+function show(v){document.querySelectorAll(".view").forEach(e=>e.classList.toggle("on",e.id==="v-"+v));
+ document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("on",t.dataset.v===v));scrollTo(0,0);
+ if(location.hash!=="#"+v)history.replaceState(null,"","#"+v)}
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>show(t.dataset.v));
+$("#go").onclick=()=>$("#cat").scrollIntoView({behavior:"smooth"});
+addEventListener("hashchange",()=>show(location.hash==="#admin"?"admin":"home"));
+if(location.hash==="#admin")show("admin");
+render();
+</script>
+</body>
+</html>
